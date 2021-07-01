@@ -101,7 +101,7 @@ async function send(actionId, snarkArgs) {
       df.contractsAPI.coreContract,
       args,
       {
-        gasPrice: 17000000000,
+        gasPrice: 11000000000,
         gasLimit: 2000000,
       },
       undefined // no snark logs
