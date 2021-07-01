@@ -4,7 +4,7 @@ import { CONTRACT_PRECISION } from 'https://cdn.skypack.dev/@darkforest_eth/cons
 
 let moveSnarkQueue;
 if (window.moveSnarkQueue === undefined) {
-  moveSnarkQueue = new PromiseQueue({ concurrency: 1 });
+  moveSnarkQueue = new PromiseQueue({ concurrency: 4 });
   moveSnarkQueue.on('add', () => {
     console.log('Adding to task to the MoveSnark Queue. Size:', moveSnarkQueue.size);
   });
@@ -19,7 +19,7 @@ if (window.moveSnarkQueue === undefined) {
 let contractQueue;
 if (window.contractQueue === undefined) {
   // Timeout a TX after 2 minutes
-  contractQueue = new PromiseQueue({ concurrency: 1, timeout: 120000 });
+  contractQueue = new PromiseQueue({ concurrency: 2, timeout: 20000 });
   contractQueue.on('add', () => {
     console.log('Adding to task to the Contract Queue. Size:', contractQueue.size);
   });
@@ -101,7 +101,7 @@ async function send(actionId, snarkArgs) {
       df.contractsAPI.coreContract,
       args,
       {
-        gasPrice: 8000000000,
+        gasPrice: 17000000000,
         gasLimit: 2000000,
       },
       undefined // no snark logs
